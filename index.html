@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C25 Aktiekurser</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0f1117;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+    }
+
+    header p {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    #status {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1.5rem;
+      min-height: 1.2em;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    thead tr {
+      background: #1e2130;
+      color: #aaa;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child { text-align: left; }
+    th:nth-child(2), td:nth-child(2) { text-align: left; }
+
+    tbody tr {
+      border-bottom: 1px solid #1e2130;
+      transition: background 0.15s;
+    }
+
+    tbody tr:hover { background: #1a1e2e; }
+
+    .ticker {
+      font-weight: 600;
+      color: #7eb8f7;
+    }
+
+    .up   { color: #3fba74; }
+    .down { color: #e05c5c; }
+    .flat { color: #888; }
+
+    .spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 120px;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    #refresh-btn {
+      display: block;
+      margin: 1.5rem auto 0;
+      padding: 0.5rem 1.4rem;
+      background: #1e2130;
+      color: #aaa;
+      border: 1px solid #2e3348;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    #refresh-btn:hover { background: #252a40; color: #fff; }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>C25 Aktiekurser</h1>
+    <p>OMX Copenhagen 25 — opdateres automatisk hvert minut</p>
+  </header>
+
+  <div id="status">Henter data…</div>
+
+  <div class="table-wrapper">
+    <div id="table-container" class="spinner">Henter data…</div>
+  </div>
+
+  <button id="refresh-btn" onclick="fetchData()">↻ Opdater nu</button>
+
+  <footer>
+    Kurser leveret af Yahoo Finance · Kan have forsinkelse på op til 15 min
+  </footer>
+
+  <script>
+    // C25 constituents — Yahoo Finance tickers (Copenhagen exchange uses .CO suffix)
+    const C25 = [
+      { ticker: 'NOVO-B.CO',  name: 'Novo Nordisk B' },
+      { ticker: 'CARL-B.CO',  name: 'Carlsberg B' },
+      { ticker: 'DANSKE.CO',  name: 'Danske Bank' },
+      { ticker: 'MAERSK-B.CO',name: 'A.P. Møller-Mærsk B' },
+      { ticker: 'MAERSK-A.CO',name: 'A.P. Møller-Cárgo A' },
+      { ticker: 'ORSTED.CO',  name: 'Ørsted' },
+      { ticker: 'DSV.CO',     name: 'DSV' },
+      { ticker: 'COLOPLAST-B.CO', name: 'Coloplast B' },
+      { ticker: 'GENMAB.CO',  name: 'Genmab' },
+      { ticker: 'VESTAS.CO',  name: 'Vestas Wind Systems' },
+      { ticker: 'ROCKWOOL-B.CO', name: 'Rockwool B' },
+      { ticker: 'DEMANT.CO',  name: 'Demant' },
+      { ticker: 'AMBU-B.CO',  name: 'Ambu B' },
+      { ticker: 'FLS.CO',     name: 'FLSmidth' },
+      { ticker: 'GN.CO',      name: 'GN Store Nord' },
+      { ticker: 'ISS.CO',     name: 'ISS' },
+      { ticker: 'JYSK.CO',    name: 'Jyske Bank' },
+      { ticker: 'NETC.CO',    name: 'Netcompany' },
+      { ticker: 'NKT.CO',     name: 'NKT' },
+      { ticker: 'PNDORA.CO',  name: 'Pandora' },
+      { ticker: 'RBREW.CO',   name: 'Royal Unibrew' },
+      { ticker: 'SYDB.CO',    name: 'Sydbank' },
+      { ticker: 'TOPDK.CO',   name: 'Topdanmark' },
+      { ticker: 'TDC.CO',     name: 'TDC Net' },
+      { ticker: 'TRYG.CO',    name: 'Tryg' },
+    ];
+
+    const symbols = C25.map(s => s.ticker).join(',');
+    // Use Yahoo Finance v7 quote endpoint via a public CORS proxy
+    const API_URL = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketPreviousClose,currency`;
+
+    let lastUpdated = null;
+    let countdown = 60;
+    let countdownTimer = null;
+
+    function fmt(n, decimals = 2) {
+      if (n === null || n === undefined || isNaN(n)) return '—';
+      return n.toLocaleString('da-DK', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    }
+
+    function signClass(n) {
+      if (n > 0) return 'up';
+      if (n < 0) return 'down';
+      return 'flat';
+    }
+
+    function signPrefix(n) {
+      return n > 0 ? '+' : '';
+    }
+
+    function renderTable(quotes) {
+      const nameMap = Object.fromEntries(C25.map(s => [s.ticker.toUpperCase(), s.name]));
+
+      const rows = quotes.map(q => {
+        const ticker = (q.symbol || '').replace('.CO', '');
+        const name   = nameMap[(q.symbol || '').toUpperCase()] || q.shortName || q.symbol;
+        const price  = q.regularMarketPrice;
+        const change = q.regularMarketChange;
+        const pct    = q.regularMarketChangePercent;
+        const prev   = q.regularMarketPreviousClose;
+        const cur    = q.currency || 'DKK';
+        const cls    = signClass(change);
+
+        return `
+          <tr>
+            <td class="ticker">${ticker}</td>
+            <td>${name}</td>
+            <td>${fmt(price)} ${cur}</td>
+            <td class="${cls}">${signPrefix(change)}${fmt(change)}</td>
+            <td class="${cls}">${signPrefix(pct)}${fmt(pct)} %</td>
+            <td>${fmt(prev)} ${cur}</td>
+          </tr>`;
+      }).join('');
+
+      return `
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Navn</th>
+              <th>Kurs</th>
+              <th>Ændring</th>
+              <th>Ændring %</th>
+              <th>Lukkekurs</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
+    function setStatus(msg) {
+      document.getElementById('status').textContent = msg;
+    }
+
+    function startCountdown() {
+      clearInterval(countdownTimer);
+      countdown = 60;
+      countdownTimer = setInterval(() => {
+        countdown--;
+        const ts = lastUpdated ? `Sidst opdateret: ${lastUpdated} · ` : '';
+        if (countdown > 0) {
+          setStatus(`${ts}Næste opdatering om ${countdown} sek.`);
+        } else {
+          clearInterval(countdownTimer);
+          fetchData();
+        }
+      }, 1000);
+    }
+
+    async function fetchData() {
+      setStatus('Henter data…');
+      try {
+        const resp = await fetch(API_URL);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const json = await resp.json();
+        const quotes = (json?.quoteResponse?.result) || [];
+        if (!quotes.length) throw new Error('Ingen data modtaget');
+
+        document.getElementById('table-container').innerHTML = renderTable(quotes);
+        document.getElementById('table-container').classList.remove('spinner');
+
+        const now = new Date();
+        lastUpdated = now.toLocaleTimeString('da-DK');
+        startCountdown();
+      } catch (err) {
+        setStatus(`Fejl ved hentning af data: ${err.message}`);
+        document.getElementById('table-container').innerHTML =
+          `<p style="text-align:center;color:#e05c5c;padding:2rem">Kunne ikke hente aktiekurser.<br>Prøv igen senere.</p>`;
+        document.getElementById('table-container').classList.add('spinner');
+        // retry in 30s on error
+        setTimeout(fetchData, 30_000);
+      }
+    }
+
+    fetchData();
+  </script>
+</body>
+</html>
