@@ -67,7 +67,7 @@ def build_empty_quote(stock):
 def make_opener():
     cookie_jar = CookieJar()
     opener = build_opener(HTTPCookieProcessor(cookie_jar))
-    opener.addheaders = [("User-Agent", USER_AGENT)]
+    opener.addheaders = [("User-Agent", USER_AGENT), ("Accept", "application/json, text/plain, */*")]
     return opener
 
 
@@ -85,7 +85,7 @@ def fetch_nordnet_results():
     }
     request = Request(
         f"{API_URL}?{urlencode(params)}",
-        headers={"client-id": "NEXT", "User-Agent": USER_AGENT},
+        headers={"client-id": "NEXT", "User-Agent": USER_AGENT, "Accept": "application/json, text/plain, */*"},
     )
 
     with opener.open(request, timeout=30) as response:
