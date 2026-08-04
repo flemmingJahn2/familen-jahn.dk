@@ -17,12 +17,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr list --repo ${{ github.repository }} --author "Copilot" --state open --json number,isDraft,mergeable --jq '.[] | @base64' | while read -r row; do
+          gh pr list --repo ${{ github.repository }} --state open --json number,isDraft,author --jq '.[] | select(.author.login | test("copilot"; "i")) | @base64' | while read -r row; do
             pr=$(echo "$row" | base64 -d)
             number=$(echo "$pr" | jq -r .number)
             draft=$(echo "$pr" | jq -r .isDraft)
             if [ "$draft" = "true" ]; then
               gh pr ready "$number" --repo ${{ github.repository }} || true
             fi
-            gh pr merge "$number" --repo ${{ github.repository }} --squash --auto || true
+            gh pr merge "$number" --repo ${{ github.repository }} --squash --auto || gh pr merge "$number" --repo ${{ github.repository }} --squash || true
           done
