@@ -121,7 +121,7 @@
 <body>
   <header>
     <h1>C25 Aktiekurser</h1>
-    <p>OMX Copenhagen 25 — opdateres automatisk hvert minut</p>
+    <p>OMX Copenhagen 25 — opdateres automatisk hvert 5. minut</p>
   </header>
 
   <div id="status">Henter data…</div>
@@ -166,12 +166,10 @@
       { ticker: 'TRYG.CO',    name: 'Tryg' },
     ];
 
-    const symbols = C25.map(s => s.ticker).join(',');
-    // Use Yahoo Finance v7 quote endpoint via a public CORS proxy
-    const API_URL = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}&fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketPreviousClose,currency`;
+    const API_URL = './data.json';
 
     let lastUpdated = null;
-    let countdown = 60;
+    let countdown = 300;
     let countdownTimer = null;
 
     function fmt(n, decimals = 2) {
@@ -235,7 +233,7 @@
 
     function startCountdown() {
       clearInterval(countdownTimer);
-      countdown = 60;
+      countdown = 300;
       countdownTimer = setInterval(() => {
         countdown--;
         const ts = lastUpdated ? `Sidst opdateret: ${lastUpdated} · ` : '';
@@ -251,7 +249,7 @@
     async function fetchData() {
       setStatus('Henter data…');
       try {
-        const resp = await fetch(API_URL);
+        const resp = await fetch(API_URL, { cache: 'no-store' });
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const json = await resp.json();
         const quotes = (json?.quoteResponse?.result) || [];
@@ -260,8 +258,10 @@
         document.getElementById('table-container').innerHTML = renderTable(quotes);
         document.getElementById('table-container').classList.remove('spinner');
 
-        const now = new Date();
-        lastUpdated = now.toLocaleTimeString('da-DK');
+        const generatedAt = json?.generatedAt ? new Date(json.generatedAt) : new Date();
+        lastUpdated = Number.isNaN(generatedAt.getTime())
+          ? 'ukendt tidspunkt'
+          : generatedAt.toLocaleString('da-DK');
         startCountdown();
       } catch (err) {
         setStatus(`Fejl ved hentning af data: ${err.message}`);
