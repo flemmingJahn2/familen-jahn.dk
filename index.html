@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Min Finanspilot</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --primary: #1a56db;
+      --primary-light: #e8f0fe;
+      --success: #0e9f6e;
+      --warning: #e3a008;
+      --danger: #e02424;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --radius: 14px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 18px 20px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(26,86,219,0.3);
+    }
+
+    header .logo { font-size: 1.5rem; }
+    header h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.3px; }
+    header p { font-size: 0.72rem; opacity: 0.8; margin-top: 1px; }
+
+    main { padding: 16px; max-width: 520px; margin: 0 auto; }
+
+    /* Summary cards */
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .card .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .card .value { font-size: 1.5rem; font-weight: 700; }
+    .card.full { grid-column: 1 / -1; }
+    .card .sub { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+
+    .green { color: var(--success); }
+    .red   { color: var(--danger); }
+    .blue  { color: var(--primary); }
+    .orange { color: var(--warning); }
+
+    /* Progress bar */
+    .progress-wrap { margin-top: 10px; }
+    .progress-bar-bg { background: var(--border); border-radius: 100px; height: 8px; overflow: hidden; margin-top: 4px; }
+    .progress-bar { height: 100%; border-radius: 100px; transition: width 0.4s ease, background 0.4s; }
+
+    /* Sections */
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    section h2 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text);
+    }
+
+    section h2 .icon { font-size: 1.1rem; }
+
+    label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; margin-top: 12px; }
+    label:first-of-type { margin-top: 0; }
+
+    input[type="number"], input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.2s;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input:focus { outline: none; border-color: var(--primary); background: #fff; }
+
+    .row { display: flex; gap: 8px; align-items: flex-end; }
+    .row input { flex: 1; }
+
+    .add-btn {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .add-btn:hover { background: #c7d9fc; }
+
+    ul.item-list { list-style: none; margin-top: 10px; }
+    ul.item-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      gap: 8px;
+    }
+    ul.item-list li:last-child { border-bottom: none; }
+    ul.item-list .item-name { flex: 1; color: var(--text); }
+    ul.item-list .item-amt { font-weight: 600; color: var(--muted); white-space: nowrap; }
+    ul.item-list .del-btn {
+      background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1rem; padding: 0 4px;
+      opacity: 0.6; transition: opacity 0.2s;
+    }
+    ul.item-list .del-btn:hover { opacity: 1; }
+
+    .empty-msg { font-size: 0.8rem; color: var(--muted); text-align: center; padding: 8px 0; }
+
+    /* Chat */
+    .chat-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .chat-messages {
+      min-height: 140px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chat-bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .chat-bubble.user {
+      background: var(--primary);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-bubble.bot {
+      background: var(--primary-light);
+      color: var(--text);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-bubble.bot strong { color: var(--primary); }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+    }
+    .chat-input-row input {
+      flex: 1;
+      border-radius: 24px;
+      padding: 10px 16px;
+    }
+    .send-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 10px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .send-btn:hover { background: #1746c0; }
+    .send-btn:disabled { background: var(--border); cursor: default; }
+
+    .typing { align-self: flex-start; color: var(--muted); font-size: 0.82rem; padding: 4px 14px; }
+
+    footer {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding: 16px 0 24px;
+    }
+
+    @media (max-width: 380px) {
+      .cards { grid-template-columns: 1fr; }
+      .card.full { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🧭</div>
+  <div>
+    <h1>Min Finanspilot</h1>
+    <p>Din personlige økonomiassistent</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- Summary cards -->
+  <div class="cards">
+    <div class="card">
+      <div class="label">Månedlig indkomst</div>
+      <div class="value blue" id="summaryIncome">0 kr</div>
+    </div>
+    <div class="card">
+      <div class="label">Samlede udgifter</div>
+      <div class="value orange" id="summaryExpenses">0 kr</div>
+    </div>
+    <div class="card">
+      <div class="label">Tilgængelige penge</div>
+      <div class="value green" id="summaryRemaining">0 kr</div>
+      <div class="sub" id="summaryRemainingNote"></div>
+    </div>
+    <div class="card">
+      <div class="label">Opsparingsrate</div>
+      <div class="value green" id="summarySavingsRate">0%</div>
+      <div class="sub" id="summarySavingsNote"></div>
+    </div>
+    <div class="card full">
+      <div class="label">Investeringsmål – fremskridt</div>
+      <div class="progress-wrap">
+        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--muted)">
+          <span id="investLabel">0 kr investeret</span>
+          <span id="investGoalLabel">mål: 0 kr</span>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-bar" id="investProgress" style="width:0%;background:var(--primary)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Income -->
+  <section>
+    <h2><span class="icon">💰</span> Månedlig indkomst</h2>
+    <label for="incomeInput">Indkomst (kr/md)</label>
+    <input type="number" id="incomeInput" placeholder="f.eks. 35000" min="0" step="100" />
+  </section>
+
+  <!-- Fixed expenses -->
+  <section>
+    <h2><span class="icon">🏠</span> Faste udgifter</h2>
+    <div class="row">
+      <div style="flex:1">
+        <label for="fixedName">Navn</label>
+        <input type="text" id="fixedName" placeholder="f.eks. Husleje" />
+      </div>
+      <div style="flex:1">
+        <label for="fixedAmt">Beløb (kr)</label>
+        <input type="number" id="fixedAmt" placeholder="f.eks. 8500" min="0" step="50" />
+      </div>
+      <button class="add-btn" onclick="addItem('fixed')" aria-label="Tilføj fast udgift">＋</button>
+    </div>
+    <ul class="item-list" id="fixedList"></ul>
+  </section>
+
+  <!-- Variable expenses -->
+  <section>
+    <h2><span class="icon">🛒</span> Variable udgifter</h2>
+    <div class="row">
+      <div style="flex:1">
+        <label for="varName">Navn</label>
+        <input type="text" id="varName" placeholder="f.eks. Mad" />
+      </div>
+      <div style="flex:1">
+        <label for="varAmt">Beløb (kr)</label>
+        <input type="number" id="varAmt" placeholder="f.eks. 3000" min="0" step="50" />
+      </div>
+      <button class="add-btn" onclick="addItem('variable')" aria-label="Tilføj variabel udgift">＋</button>
+    </div>
+    <ul class="item-list" id="variableList"></ul>
+  </section>
+
+  <!-- Investment goals -->
+  <section>
+    <h2><span class="icon">📈</span> Investeringsmål</h2>
+    <label for="investMonthly">Månedlig investering (kr)</label>
+    <input type="number" id="investMonthly" placeholder="f.eks. 2000" min="0" step="100" />
+    <label for="investGoal">Mål (samlet beløb, kr)</label>
+    <input type="number" id="investGoal" placeholder="f.eks. 200000" min="0" step="1000" />
+    <label for="investSaved">Allerede investeret (kr)</label>
+    <input type="number" id="investSaved" placeholder="f.eks. 50000" min="0" step="500" />
+  </section>
+
+  <!-- AI Chat -->
+  <section>
+    <h2><span class="icon">🤖</span> Spørg din finanspilot</h2>
+    <div class="chat-box">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-bubble bot">
+          Hej! Jeg er din Finanspilot 🧭 Spørg mig om budgetter, opsparing, investering eller din økonomi generelt.
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Stil et spørgsmål…" maxlength="300" />
+        <button class="send-btn" id="sendBtn" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Min Finanspilot &copy; 2026 – Ikke finansiel rådgivning</footer>
+
+<script>
+  // ── State ──────────────────────────────────────────────────────────────────
+  const state = {
+    income: 0,
+    fixed: [],   // [{id, name, amount}]
+    variable: [],
+    investMonthly: 0,
+    investGoal: 0,
+    investSaved: 0,
+  };
+
+  let nextId = 1;
+
+  // ── Persistence ────────────────────────────────────────────────────────────
+  function save() {
+    try { localStorage.setItem('finanspilot', JSON.stringify(state)); } catch(e) {}
+  }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem('finanspilot');
+      if (!raw) return;
+      const s = JSON.parse(raw);
+      Object.assign(state, s);
+      // restore nextId
+      const allIds = [...state.fixed, ...state.variable].map(i => i.id);
+      if (allIds.length) nextId = Math.max(...allIds) + 1;
+    } catch(e) {}
+  }
+
+  // ── Formatting ─────────────────────────────────────────────────────────────
+  function fmt(n) {
+    return Math.round(n).toLocaleString('da-DK') + ' kr';
+  }
+
+  // ── Update UI ──────────────────────────────────────────────────────────────
+  function update() {
+    const totalFixed    = state.fixed.reduce((s, i) => s + i.amount, 0);
+    const totalVariable = state.variable.reduce((s, i) => s + i.amount, 0);
+    const totalExpenses = totalFixed + totalVariable + state.investMonthly;
+    const remaining     = state.income - totalExpenses;
+    const savingsRate   = state.income > 0
+      ? ((state.investMonthly / state.income) * 100).toFixed(1)
+      : 0;
+
+    // Cards
+    document.getElementById('summaryIncome').textContent   = fmt(state.income);
+    document.getElementById('summaryExpenses').textContent = fmt(totalExpenses);
+
+    const remEl = document.getElementById('summaryRemaining');
+    remEl.textContent = fmt(remaining);
+    remEl.className = 'value ' + (remaining >= 0 ? 'green' : 'red');
+    document.getElementById('summaryRemainingNote').textContent =
+      remaining >= 0 ? 'Efter alle udgifter' : '⚠ Budget overskrides';
+
+    const rateEl = document.getElementById('summarySavingsRate');
+    rateEl.textContent = savingsRate + '%';
+    rateEl.className = 'value ' + (savingsRate >= 20 ? 'green' : savingsRate >= 10 ? 'orange' : 'red');
+    document.getElementById('summarySavingsNote').textContent =
+      savingsRate >= 20 ? '🎯 Godt klaret!' : savingsRate >= 10 ? 'Kan forbedres' : 'Prøv at øge opsparing';
+
+    // Investment progress
+    const goal  = state.investGoal;
+    const saved = state.investSaved;
+    const pct   = goal > 0 ? Math.min(100, (saved / goal) * 100).toFixed(1) : 0;
+    document.getElementById('investLabel').textContent      = fmt(saved) + ' investeret';
+    document.getElementById('investGoalLabel').textContent  = 'mål: ' + fmt(goal);
+    const bar = document.getElementById('investProgress');
+    bar.style.width      = pct + '%';
+    bar.style.background = pct >= 100 ? 'var(--success)' : pct >= 50 ? 'var(--primary)' : 'var(--warning)';
+
+    // Lists
+    renderList('fixed');
+    renderList('variable');
+
+    save();
+  }
+
+  function renderList(type) {
+    const ul = document.getElementById(type + 'List');
+    const items = state[type];
+    if (!items.length) {
+      ul.innerHTML = '<li><span class="empty-msg">Ingen poster endnu</span></li>';
+      return;
+    }
+    ul.innerHTML = items.map(item => `
+      <li>
+        <span class="item-name">${escHtml(item.name)}</span>
+        <span class="item-amt">${fmt(item.amount)}</span>
+        <button class="del-btn" onclick="removeItem('${type}',${item.id})" aria-label="Slet">✕</button>
+      </li>`).join('');
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Add / Remove items ─────────────────────────────────────────────────────
+  function addItem(type) {
+    const nameInput = document.getElementById(type === 'fixed' ? 'fixedName' : 'varName');
+    const amtInput  = document.getElementById(type === 'fixed' ? 'fixedAmt'  : 'varAmt');
+    const name = nameInput.value.trim();
+    const amount = parseFloat(amtInput.value);
+    if (!name || isNaN(amount) || amount < 0) return;
+    state[type].push({ id: nextId++, name, amount });
+    nameInput.value = '';
+    amtInput.value  = '';
+    nameInput.focus();
+    update();
+  }
+
+  function removeItem(type, id) {
+    state[type] = state[type].filter(i => i.id !== id);
+    update();
+  }
+
+  // ── Bind numeric inputs ────────────────────────────────────────────────────
+  function bindInput(id, stateKey) {
+    const el = document.getElementById(id);
+    el.addEventListener('input', () => {
+      state[stateKey] = parseFloat(el.value) || 0;
+      update();
+    });
+  }
+
+  // Allow pressing Enter in expense rows
+  function bindEnter(nameId, amtId, type) {
+    [nameId, amtId].forEach(id => {
+      document.getElementById(id).addEventListener('keydown', e => {
+        if (e.key === 'Enter') addItem(type);
+      });
+    });
+  }
+
+  // ── AI Chat (rule-based + financial context) ───────────────────────────────
+  const responses = [
+    {
+      keywords: ['opsparingsrate','opsparing rate','spare mere','sparerate'],
+      reply: () => {
+        const income = state.income;
+        const rate = income > 0
+          ? ((state.investMonthly / income) * 100).toFixed(1)
+          : 0;
+        return `Din nuværende opsparingsrate er <strong>${rate}%</strong>. Eksperter anbefaler typisk at spare mindst 20% af din indkomst. ${rate < 20 ? 'Prøv at øge dine månedlige investeringer eller skære i variable udgifter.' : 'Godt klaret – du er på rette spor!'}`;
+      }
+    },
+    {
+      keywords: ['rådighedsbeløb','tilbage','resterende','cashflow'],
+      reply: () => {
+        const totalFixed    = state.fixed.reduce((s,i)=>s+i.amount,0);
+        const totalVariable = state.variable.reduce((s,i)=>s+i.amount,0);
+        const remaining = state.income - totalFixed - totalVariable - state.investMonthly;
+        return `Dit månedlige rådighedsbeløb er <strong>${fmt(remaining)}</strong>. ${remaining < 0 ? '⚠ Du bruger mere end du tjener. Kig på dine variable udgifter.' : 'Det er det beløb du har tilbage efter alle udgifter og investeringer.'}`;
+      }
+    },
+    {
+      keywords: ['budget','50/30/20','fordeling'],
+      reply: () => {
+        if (!state.income) return 'Indtast din månedlige indkomst øverst, så kan jeg beregne en budgetfordeling.';
+        const i = state.income;
+        return `Med 50/30/20-reglen og din indkomst på <strong>${fmt(i)}</strong>:<br>
+• <strong>50%</strong> til nødvendigheder: ${fmt(i*0.5)}<br>
+• <strong>30%</strong> til livsstil: ${fmt(i*0.3)}<br>
+• <strong>20%</strong> til opsparing/investering: ${fmt(i*0.2)}`;
+      }
+    },
+    {
+      keywords: ['investering','invest','aktier','etf','indeks'],
+      reply: () => `Generelle investeringstips:<br>
+• Start tidligt – renters rente er dit stærkeste redskab<br>
+• Spred risiko med brede indeksfonde (f.eks. MSCI World ETF)<br>
+• Invester regelmæssigt, uanset markedet (dollar-cost averaging)<br>
+• <em>Bemærk: Dette er ikke finansiel rådgivning.</em>`
+    },
+    {
+      keywords: ['gæld','lån','renter','betale af'],
+      reply: () => `Tips til gældsnedbringelse:<br>
+• Betal altid mindst minimumsydelsen<br>
+• Fokuser ekstra betalinger på den dyreste gæld (avalanche-metoden)<br>
+• Overvej at refinansiere lån med høje renter<br>
+• Byg en nødfond på 3-6 måneders udgifter sideløbende`
+    },
+    {
+      keywords: ['nødfond','buffer','opsparing'],
+      reply: () => {
+        const totalExpenses = state.fixed.reduce((s,i)=>s+i.amount,0)
+          + state.variable.reduce((s,i)=>s+i.amount,0);
+        const target = totalExpenses * 3;
+        return `En sund nødfond dækker 3-6 måneders udgifter. Baseret på dine udgifter er det ca. <strong>${fmt(target)} – ${fmt(totalExpenses*6)}</strong>. Opbyg den gradvist, f.eks. 500-1.000 kr/md.`;
+      }
+    },
+    {
+      keywords: ['hej','hejsa','goddag','hi','hello'],
+      reply: () => 'Hej! 👋 Hvad kan jeg hjælpe dig med i dag? Spørg om budget, opsparing, investering eller din økonomi.'
+    },
+    {
+      keywords: ['tak','tusind tak','super','fedt'],
+      reply: () => 'Selv tak! 😊 Er der andet jeg kan hjælpe med?'
+    },
+    {
+      keywords: ['hjælp','hvad kan','muligheder'],
+      reply: () => `Jeg kan hjælpe med:<br>
+• 💡 <strong>Budget</strong> – 50/30/20-reglen og fordelinger<br>
+• 📊 <strong>Opsparingsrate</strong> – beregning og mål<br>
+• 💰 <strong>Rådighedsbeløb</strong> – hvad er der tilbage<br>
+• 📈 <strong>Investering</strong> – generelle strategier<br>
+• 🏦 <strong>Gæld</strong> – nedbetalingsstrategier<br>
+• 🛡️ <strong>Nødfond</strong> – hvor meget du bør have`
+    },
+  ];
+
+  function findResponse(msg) {
+    const lower = msg.toLowerCase();
+    for (const r of responses) {
+      if (r.keywords.some(k => lower.includes(k))) {
+        return typeof r.reply === 'function' ? r.reply() : r.reply;
+      }
+    }
+    return `Jeg forstår ikke helt spørgsmålet. Prøv at spørge om <em>budget</em>, <em>opsparing</em>, <em>rådighedsbeløb</em>, <em>investering</em>, <em>gæld</em> eller <em>nødfond</em>.`;
+  }
+
+  function appendBubble(text, role) {
+    const div = document.createElement('div');
+    div.className = 'chat-bubble ' + role;
+    div.innerHTML = text;
+    const msgs = document.getElementById('chatMessages');
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  function sendChat() {
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+    input.value = '';
+    appendBubble(escHtml(msg), 'user');
+
+    // Simulate a short delay
+    const btn = document.getElementById('sendBtn');
+    btn.disabled = true;
+    const typing = document.createElement('div');
+    typing.className = 'typing';
+    typing.textContent = 'Finanspiloten skriver…';
+    document.getElementById('chatMessages').appendChild(typing);
+    document.getElementById('chatMessages').scrollTop = 9999;
+
+    setTimeout(() => {
+      typing.remove();
+      appendBubble(findResponse(msg), 'bot');
+      btn.disabled = false;
+      input.focus();
+    }, 600 + Math.random() * 500);
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  load();
+
+  bindInput('incomeInput',    'income');
+  bindInput('investMonthly',  'investMonthly');
+  bindInput('investGoal',     'investGoal');
+  bindInput('investSaved',    'investSaved');
+  bindEnter('fixedName', 'fixedAmt', 'fixed');
+  bindEnter('varName',   'varAmt',   'variable');
+
+  // Restore field values from state
+  document.getElementById('incomeInput').value   = state.income    || '';
+  document.getElementById('investMonthly').value = state.investMonthly || '';
+  document.getElementById('investGoal').value    = state.investGoal    || '';
+  document.getElementById('investSaved').value   = state.investSaved   || '';
+
+  // Chat – send on Enter
+  document.getElementById('chatInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendChat();
+  });
+
+  update();
+</script>
+
+</body>
+</html>
