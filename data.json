@@ -1,0 +1,233 @@
+{
+  "quoteResponse": {
+    "result": [
+      {
+        "symbol": "NOVO-B.CO",
+        "shortName": "Novo Nordisk B",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "CARL-B.CO",
+        "shortName": "Carlsberg B",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "DANSKE.CO",
+        "shortName": "Danske Bank",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "MAERSK-B.CO",
+        "shortName": "A.P. Møller-Mærsk B",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "MAERSK-A.CO",
+        "shortName": "A.P. Møller-Cárgo A",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "ORSTED.CO",
+        "shortName": "Ørsted",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "DSV.CO",
+        "shortName": "DSV",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "COLOPLAST-B.CO",
+        "shortName": "Coloplast B",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "GENMAB.CO",
+        "shortName": "Genmab",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "VESTAS.CO",
+        "shortName": "Vestas Wind Systems",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "ROCKWOOL-B.CO",
+        "shortName": "Rockwool B",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "DEMANT.CO",
+        "shortName": "Demant",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "AMBU-B.CO",
+        "shortName": "Ambu B",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "FLS.CO",
+        "shortName": "FLSmidth",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "GN.CO",
+        "shortName": "GN Store Nord",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "ISS.CO",
+        "shortName": "ISS",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "JYSK.CO",
+        "shortName": "Jyske Bank",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "NETC.CO",
+        "shortName": "Netcompany",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "NKT.CO",
+        "shortName": "NKT",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "PNDORA.CO",
+        "shortName": "Pandora",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "RBREW.CO",
+        "shortName": "Royal Unibrew",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "SYDB.CO",
+        "shortName": "Sydbank",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "TOPDK.CO",
+        "shortName": "Topdanmark",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "TDC.CO",
+        "shortName": "TDC Net",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      },
+      {
+        "symbol": "TRYG.CO",
+        "shortName": "Tryg",
+        "regularMarketPrice": null,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": null,
+        "currency": "DKK"
+      }
+    ]
+  },
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "source": "Yahoo Finance"
+}
