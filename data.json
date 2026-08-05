@@ -4,10 +4,10 @@
       {
         "symbol": "NOVO-B.CO",
         "shortName": "Novo Nordisk B A/S",
-        "regularMarketPrice": 307.6,
-        "regularMarketChange": 5.3,
-        "regularMarketChangePercent": 1.75,
-        "regularMarketPreviousClose": 302.3,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 307.6,
         "currency": "DKK"
       },
       {
@@ -22,10 +22,10 @@
       {
         "symbol": "DANSKE.CO",
         "shortName": "Danske Bank A/S",
-        "regularMarketPrice": 377.9,
-        "regularMarketChange": 2.7,
-        "regularMarketChangePercent": 0.72,
-        "regularMarketPreviousClose": 375.2,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 377.9,
         "currency": "DKK"
       },
       {
@@ -49,10 +49,10 @@
       {
         "symbol": "ORSTED.CO",
         "shortName": "Ørsted A/S",
-        "regularMarketPrice": 142.6,
-        "regularMarketChange": -1.6,
-        "regularMarketChangePercent": -1.11,
-        "regularMarketPreviousClose": 144.2,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 142.6,
         "currency": "DKK"
       },
       {
@@ -157,10 +157,10 @@
       {
         "symbol": "NETC.CO",
         "shortName": "Netcompany Group A/S",
-        "regularMarketPrice": 317.8,
-        "regularMarketChange": -15.2,
-        "regularMarketChangePercent": -4.56,
-        "regularMarketPreviousClose": 333.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 317.8,
         "currency": "DKK"
       },
       {
@@ -175,10 +175,10 @@
       {
         "symbol": "PNDORA.CO",
         "shortName": "Pandora A/S",
-        "regularMarketPrice": 830.0,
-        "regularMarketChange": -10.8,
-        "regularMarketChangePercent": -1.28,
-        "regularMarketPreviousClose": 840.8,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 830.0,
         "currency": "DKK"
       },
       {
@@ -228,6 +228,6 @@
       }
     ]
   },
-  "generatedAt": "2026-08-05T04:09:37Z",
+  "generatedAt": "2026-08-05T06:42:12Z",
   "source": "Nordnet"
 }
