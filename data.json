@@ -4,10 +4,10 @@
       {
         "symbol": "NOVO-B.CO",
         "shortName": "Novo Nordisk B A/S",
-        "regularMarketPrice": 296.15,
-        "regularMarketChange": -3.3,
-        "regularMarketChangePercent": -1.1,
-        "regularMarketPreviousClose": 299.45,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 296.15,
         "currency": "DKK"
       },
       {
@@ -22,10 +22,10 @@
       {
         "symbol": "DANSKE.CO",
         "shortName": "Danske Bank A/S",
-        "regularMarketPrice": 367.9,
-        "regularMarketChange": 1.9,
-        "regularMarketChangePercent": 0.52,
-        "regularMarketPreviousClose": 366.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 367.9,
         "currency": "DKK"
       },
       {
@@ -49,19 +49,19 @@
       {
         "symbol": "ORSTED.CO",
         "shortName": "Ørsted A/S",
-        "regularMarketPrice": 133.2,
-        "regularMarketChange": -0.95,
-        "regularMarketChangePercent": -0.71,
-        "regularMarketPreviousClose": 134.15,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 133.2,
         "currency": "DKK"
       },
       {
         "symbol": "DSV.CO",
         "shortName": "DSV A/S",
-        "regularMarketPrice": 1377.0,
-        "regularMarketChange": 6.5,
-        "regularMarketChangePercent": 0.47,
-        "regularMarketPreviousClose": 1370.5,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 1377.0,
         "currency": "DKK"
       },
       {
@@ -76,10 +76,10 @@
       {
         "symbol": "GENMAB.CO",
         "shortName": "Genmab A/S",
-        "regularMarketPrice": 2141.0,
-        "regularMarketChange": -11.0,
-        "regularMarketChangePercent": -0.51,
-        "regularMarketPreviousClose": 2152.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 2141.0,
         "currency": "DKK"
       },
       {
@@ -94,10 +94,10 @@
       {
         "symbol": "ROCKWOOL-B.CO",
         "shortName": "Rockwool A/S ser. B",
-        "regularMarketPrice": 198.4,
-        "regularMarketChange": -14.0,
-        "regularMarketChangePercent": -6.59,
-        "regularMarketPreviousClose": 212.4,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 198.4,
         "currency": "DKK"
       },
       {
@@ -112,10 +112,10 @@
       {
         "symbol": "AMBU-B.CO",
         "shortName": "Ambu A/S",
-        "regularMarketPrice": 75.6,
-        "regularMarketChange": -0.5,
-        "regularMarketChangePercent": -0.66,
-        "regularMarketPreviousClose": 76.1,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 75.6,
         "currency": "DKK"
       },
       {
@@ -157,19 +157,19 @@
       {
         "symbol": "NETC.CO",
         "shortName": "Netcompany Group A/S",
-        "regularMarketPrice": 325.6,
-        "regularMarketChange": -3.8,
-        "regularMarketChangePercent": -1.15,
-        "regularMarketPreviousClose": 329.4,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 325.6,
         "currency": "DKK"
       },
       {
         "symbol": "NKT.CO",
         "shortName": "NKT A/S",
-        "regularMarketPrice": 930.5,
-        "regularMarketChange": -13.5,
-        "regularMarketChangePercent": -1.43,
-        "regularMarketPreviousClose": 944.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 930.5,
         "currency": "DKK"
       },
       {
@@ -193,10 +193,10 @@
       {
         "symbol": "SYDB.CO",
         "shortName": "AL Sydbank A/S",
-        "regularMarketPrice": 637.0,
-        "regularMarketChange": -2.5,
-        "regularMarketChangePercent": -0.39,
-        "regularMarketPreviousClose": 639.5,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 637.0,
         "currency": "DKK"
       },
       {
@@ -220,14 +220,14 @@
       {
         "symbol": "TRYG.CO",
         "shortName": "Tryg A/S",
-        "regularMarketPrice": 153.4,
-        "regularMarketChange": 1.2,
-        "regularMarketChangePercent": 0.79,
-        "regularMarketPreviousClose": 152.2,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 153.4,
         "currency": "DKK"
       }
     ]
   },
-  "generatedAt": "2026-08-21T05:05:01Z",
+  "generatedAt": "2026-08-21T05:48:07Z",
   "source": "Nordnet"
 }
