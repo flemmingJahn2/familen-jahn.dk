@@ -4,10 +4,10 @@
       {
         "symbol": "NOVO-B.CO",
         "shortName": "Novo Nordisk B A/S",
-        "regularMarketPrice": 292.0,
-        "regularMarketChange": -6.95,
-        "regularMarketChangePercent": -2.32,
-        "regularMarketPreviousClose": 298.95,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 292.0,
         "currency": "DKK"
       },
       {
@@ -49,10 +49,10 @@
       {
         "symbol": "ORSTED.CO",
         "shortName": "Ørsted A/S",
-        "regularMarketPrice": 142.3,
-        "regularMarketChange": 2.5,
-        "regularMarketChangePercent": 1.79,
-        "regularMarketPreviousClose": 139.8,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 142.3,
         "currency": "DKK"
       },
       {
@@ -76,10 +76,10 @@
       {
         "symbol": "GENMAB.CO",
         "shortName": "Genmab A/S",
-        "regularMarketPrice": 2165.0,
-        "regularMarketChange": 24.0,
-        "regularMarketChangePercent": 1.12,
-        "regularMarketPreviousClose": 2141.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 2165.0,
         "currency": "DKK"
       },
       {
@@ -139,10 +139,10 @@
       {
         "symbol": "ISS.CO",
         "shortName": "ISS A/S",
-        "regularMarketPrice": 281.8,
-        "regularMarketChange": 2.4,
-        "regularMarketChangePercent": 0.86,
-        "regularMarketPreviousClose": 279.4,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 281.8,
         "currency": "DKK"
       },
       {
@@ -175,10 +175,10 @@
       {
         "symbol": "PNDORA.CO",
         "shortName": "Pandora A/S",
-        "regularMarketPrice": 817.8,
-        "regularMarketChange": -9.6,
-        "regularMarketChangePercent": -1.16,
-        "regularMarketPreviousClose": 827.4,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 817.8,
         "currency": "DKK"
       },
       {
@@ -220,14 +220,14 @@
       {
         "symbol": "TRYG.CO",
         "shortName": "Tryg A/S",
-        "regularMarketPrice": 153.7,
-        "regularMarketChange": -1.6,
-        "regularMarketChangePercent": -1.03,
-        "regularMarketPreviousClose": 155.3,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 153.7,
         "currency": "DKK"
       }
     ]
   },
-  "generatedAt": "2026-09-09T01:23:18Z",
+  "generatedAt": "2026-09-09T06:25:26Z",
   "source": "Nordnet"
 }
