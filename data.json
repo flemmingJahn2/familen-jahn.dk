@@ -4,10 +4,10 @@
       {
         "symbol": "NOVO-B.CO",
         "shortName": "Novo Nordisk B A/S",
-        "regularMarketPrice": 288.9,
-        "regularMarketChange": -3.1,
-        "regularMarketChangePercent": -1.06,
-        "regularMarketPreviousClose": 292.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 288.9,
         "currency": "DKK"
       },
       {
@@ -22,10 +22,10 @@
       {
         "symbol": "DANSKE.CO",
         "shortName": "Danske Bank A/S",
-        "regularMarketPrice": 372.1,
-        "regularMarketChange": -4.2,
-        "regularMarketChangePercent": -1.12,
-        "regularMarketPreviousClose": 376.3,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 372.1,
         "currency": "DKK"
       },
       {
@@ -157,10 +157,10 @@
       {
         "symbol": "NETC.CO",
         "shortName": "Netcompany Group A/S",
-        "regularMarketPrice": 316.4,
-        "regularMarketChange": -7.6,
-        "regularMarketChangePercent": -2.35,
-        "regularMarketPreviousClose": 324.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 316.4,
         "currency": "DKK"
       },
       {
@@ -220,14 +220,14 @@
       {
         "symbol": "TRYG.CO",
         "shortName": "Tryg A/S",
-        "regularMarketPrice": 152.4,
-        "regularMarketChange": -1.3,
-        "regularMarketChangePercent": -0.85,
-        "regularMarketPreviousClose": 153.7,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 152.4,
         "currency": "DKK"
       }
     ]
   },
-  "generatedAt": "2026-09-10T01:28:28Z",
+  "generatedAt": "2026-09-10T06:35:34Z",
   "source": "Nordnet"
 }
