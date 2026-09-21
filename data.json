@@ -4,10 +4,10 @@
       {
         "symbol": "NOVO-B.CO",
         "shortName": "Novo Nordisk B A/S",
-        "regularMarketPrice": 281.55,
-        "regularMarketChange": 2.2,
-        "regularMarketChangePercent": 0.79,
-        "regularMarketPreviousClose": 279.35,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 281.55,
         "currency": "DKK"
       },
       {
@@ -22,10 +22,10 @@
       {
         "symbol": "DANSKE.CO",
         "shortName": "Danske Bank A/S",
-        "regularMarketPrice": 375.4,
-        "regularMarketChange": -0.4,
-        "regularMarketChangePercent": -0.11,
-        "regularMarketPreviousClose": 375.8,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 375.4,
         "currency": "DKK"
       },
       {
@@ -175,10 +175,10 @@
       {
         "symbol": "PNDORA.CO",
         "shortName": "Pandora A/S",
-        "regularMarketPrice": 787.0,
-        "regularMarketChange": -20.8,
-        "regularMarketChangePercent": -2.57,
-        "regularMarketPreviousClose": 807.8,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 787.0,
         "currency": "DKK"
       },
       {
@@ -228,6 +228,6 @@
       }
     ]
   },
-  "generatedAt": "2026-09-21T01:05:27Z",
+  "generatedAt": "2026-09-21T06:20:57Z",
   "source": "Nordnet"
 }
