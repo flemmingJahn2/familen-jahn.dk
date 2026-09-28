@@ -4,9 +4,9 @@
       {
         "symbol": "NOVO-B.CO",
         "shortName": "Novo Nordisk B A/S",
-        "regularMarketPrice": 253.0,
-        "regularMarketChange": 0,
-        "regularMarketChangePercent": 0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
         "regularMarketPreviousClose": 253.0,
         "currency": "DKK"
       },
@@ -22,10 +22,10 @@
       {
         "symbol": "DANSKE.CO",
         "shortName": "Danske Bank A/S",
-        "regularMarketPrice": 377.6,
-        "regularMarketChange": 2.1,
-        "regularMarketChangePercent": 0.56,
-        "regularMarketPreviousClose": 375.5,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 377.6,
         "currency": "DKK"
       },
       {
@@ -49,10 +49,10 @@
       {
         "symbol": "ORSTED.CO",
         "shortName": "Ørsted A/S",
-        "regularMarketPrice": 137.0,
-        "regularMarketChange": 1.25,
-        "regularMarketChangePercent": 0.92,
-        "regularMarketPreviousClose": 135.75,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 137.0,
         "currency": "DKK"
       },
       {
@@ -76,10 +76,10 @@
       {
         "symbol": "GENMAB.CO",
         "shortName": "Genmab A/S",
-        "regularMarketPrice": 2277.0,
-        "regularMarketChange": 9.0,
-        "regularMarketChangePercent": 0.4,
-        "regularMarketPreviousClose": 2268.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 2277.0,
         "currency": "DKK"
       },
       {
@@ -94,10 +94,10 @@
       {
         "symbol": "ROCKWOOL-B.CO",
         "shortName": "Rockwool A/S ser. B",
-        "regularMarketPrice": 188.6,
-        "regularMarketChange": 2.7,
-        "regularMarketChangePercent": 1.45,
-        "regularMarketPreviousClose": 185.9,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 188.6,
         "currency": "DKK"
       },
       {
@@ -139,10 +139,10 @@
       {
         "symbol": "ISS.CO",
         "shortName": "ISS A/S",
-        "regularMarketPrice": 293.2,
-        "regularMarketChange": -3.4,
-        "regularMarketChangePercent": -1.15,
-        "regularMarketPreviousClose": 296.6,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 293.2,
         "currency": "DKK"
       },
       {
@@ -157,28 +157,28 @@
       {
         "symbol": "NETC.CO",
         "shortName": "Netcompany Group A/S",
-        "regularMarketPrice": 310.0,
-        "regularMarketChange": 1.6,
-        "regularMarketChangePercent": 0.52,
-        "regularMarketPreviousClose": 308.4,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 310.0,
         "currency": "DKK"
       },
       {
         "symbol": "NKT.CO",
         "shortName": "NKT A/S",
-        "regularMarketPrice": 918.0,
-        "regularMarketChange": 8.5,
-        "regularMarketChangePercent": 0.93,
-        "regularMarketPreviousClose": 909.5,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 918.0,
         "currency": "DKK"
       },
       {
         "symbol": "PNDORA.CO",
         "shortName": "Pandora A/S",
-        "regularMarketPrice": 836.2,
-        "regularMarketChange": -3.8,
-        "regularMarketChangePercent": -0.45,
-        "regularMarketPreviousClose": 840.0,
+        "regularMarketPrice": 0,
+        "regularMarketChange": null,
+        "regularMarketChangePercent": null,
+        "regularMarketPreviousClose": 836.2,
         "currency": "DKK"
       },
       {
@@ -228,6 +228,6 @@
       }
     ]
   },
-  "generatedAt": "2026-09-28T01:11:29Z",
+  "generatedAt": "2026-09-28T06:56:37Z",
   "source": "Nordnet"
 }
